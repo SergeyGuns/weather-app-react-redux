@@ -1,0 +1,35 @@
+.form {
+  width: 200px;
+  position: relative;
+  font-family: monospace;
+  font-size: 16px;
+}
+
+.form__auto-complite {
+  max-height: 300px;
+  overflow: scroll;
+  width: 100%;
+  background: rgb(212, 212, 212);
+}
+
+.form__hypothesis {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: .5;
+  width: 100%;
+  border: solid 2px black;
+  pointer-events: none;
+}
+
+.form__input-city {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  background: transparent;
+  font-family: monospace;
+  font-size: 16px;
+  box-sizing: border-box;
+  border: solid 2px black;
+
+}
