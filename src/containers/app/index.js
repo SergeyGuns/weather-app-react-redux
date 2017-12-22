@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Link } from 'react-router-dom'
 import Home from '../home'
 import About from '../about'
-import Weather from '../weather'
+import Weather from '../Weather'
 
 const App = () => (
   <div>

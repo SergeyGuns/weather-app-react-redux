@@ -7,6 +7,7 @@ var cityQuery = '/?city='
 http.createServer(function (req, res) {
   if (req.url.indexOf(cityQuery) !== -1) {
     res.writeHead( 200, {
+      'Access-Control-Allow-Origin': '*',
       'Content-Type': 'application/json'
     })
     let query = decodeURI(req.url.replace(cityQuery, ''))

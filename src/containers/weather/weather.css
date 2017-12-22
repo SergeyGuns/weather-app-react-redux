@@ -4,7 +4,9 @@
   font-family: monospace;
   font-size: 16px;
 }
-
+.form__hide {
+  display: none;
+}
 .form__auto-complite {
   max-height: 300px;
   overflow: scroll;
