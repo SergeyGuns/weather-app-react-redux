@@ -23,7 +23,7 @@ const Weather = props => {
         value={props.inputValue}
         autoComplete='off'
         className='form__input-city' 
-        onChange={()=>{props.addInputChange(), props.fetchData()}}/>
+        onChange={props.addInputChange}/>
       {
         props.filteredcity[0] && props.filteredcity[0].name !== props.inputValue && 
           <div className='form__auto-complite'>

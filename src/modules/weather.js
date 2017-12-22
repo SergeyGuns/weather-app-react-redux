@@ -25,18 +25,20 @@ export const handleFormSubmit = ( event ) => {
 }
 
 export const fetchData = ( event ) => {
+  console.log(event)
   return (dispatch, getState) => { //using redux-thunk here... do check it out 
-    const url = 'http://localhost:8080/?city='
-    fetch(url)
-      .then(response => { dispatch(receiveData(response.data))}) //data being your api response object/array
+    const url = 'http://localhost:8080/?city=' + event.target.value
+    return fetch(url)
+      .then(response => dispatch(receiveData(response.data))) //data being your api response object/array
     }
   }
 
 
 function receiveData(data) {
+  console.log(data)
   return {
     type: 'RECEIVE_DATA',
-    data
+    data: data
   }
 }
 
@@ -47,6 +49,8 @@ export const addInputChange = ( event ) => {
       type : INPUT_CHANGE,
       payload: payload
     })
+
+    return fetchData(event)()
   }
 }
 
@@ -78,15 +82,17 @@ export const handleInputKey = ( event ) => {
 export default (state = initState, action) => {
   console.log(action)
   switch (action.type) {
-    case RECEIVE_DATA: {
-      Object.assign({}, ...state, {
-        action.data
-      })
-    }
     case INPUT_CHANGE: {
         return {
           ...state,
           inputValue: action.payload
+        }
+    }
+    case 'RECEIVE_DATA': {
+        console.log(action)
+        return {
+          ...state
+          // filteredcity: action.payload
         }
     }
     case INPUT_SET: {
