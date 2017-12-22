@@ -1,9 +1,10 @@
-import CITY_LIST from '../data/city.list.json'
+// import CITY_LIST from '../data/city.list.json'
 
 export const INPUT_CHANGE = 'weather/INPUT_CHANGE'
 export const INPUT_SET = 'weather/INPUT_SET'
 export const INPUT_KEY_PRESS = 'weather/INPUT_KEY_PRESS'
 export const FORM_SUBMIT = 'weather/FORM_SUBMIT'
+export const AUTO_COMPLITE_REPLACE = 'weather/AUTO_COMPLITE_REPLACE'
 
 const initState = {
   filteredcity: [],
@@ -20,6 +21,22 @@ export const handleFormSubmit = ( event ) => {
     dispatch({
       type: FORM_SUBMIT
     })
+  }
+}
+
+export const fetchData = ( event ) => {
+  return (dispatch, getState) => { //using redux-thunk here... do check it out 
+    const url = 'http://localhost:8080/?city='
+    fetch(url)
+      .then(response => { dispatch(receiveData(response.data))}) //data being your api response object/array
+    }
+  }
+
+
+function receiveData(data) {
+  return {
+    type: 'RECEIVE_DATA',
+    data
   }
 }
 
@@ -61,17 +78,20 @@ export const handleInputKey = ( event ) => {
 export default (state = initState, action) => {
   console.log(action)
   switch (action.type) {
+    case RECEIVE_DATA: {
+      Object.assign({}, ...state, {
+        action.data
+      })
+    }
     case INPUT_CHANGE: {
         return {
           ...state,
-          ...filterCity(action.payload, state.chosedcity, CITY_LIST),
           inputValue: action.payload
         }
     }
     case INPUT_SET: {
         return {
           ...state,
-          ...filterCity(action.payload.name, state.chosedcity, CITY_LIST),
           inputValue : action.payload.name,
           currCityId : action.payload.id
         }
@@ -79,7 +99,6 @@ export default (state = initState, action) => {
     case INPUT_KEY_PRESS: {
         return {
           ...state,
-          ...filterCity(action.payload, state.chosedcity, CITY_LIST),
           inputValue : action.payload
         }
     }

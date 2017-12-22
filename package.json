@@ -1,6 +1,7 @@
 {
   "name": "whether-app",
   "version": "0.1.0",
+  "google-maps-api-key": "AIzaSyCL3TeTny81q7jEN1mSHxh9OO3s727hCsQ",
   "private": true,
   "dependencies": {
     "history": "^4.7.2",

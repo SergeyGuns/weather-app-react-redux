@@ -6,7 +6,8 @@ import {
   addInputChange,
   setInputValue,
   handleInputKey,
-  handleFormSubmit
+  handleFormSubmit,
+  fetchData
 } from '../../modules/weather'
 
 import './weather.css'
@@ -22,7 +23,7 @@ const Weather = props => {
         value={props.inputValue}
         autoComplete='off'
         className='form__input-city' 
-        onChange={props.addInputChange}/>
+        onChange={()=>{props.addInputChange(), props.fetchData()}}/>
       {
         props.filteredcity[0] && props.filteredcity[0].name !== props.inputValue && 
           <div className='form__auto-complite'>
@@ -55,7 +56,8 @@ const mapDispatchToProps = dispatch => bindActionCreators({
   addInputChange,
   setInputValue,
   handleInputKey,
-  handleFormSubmit
+  handleFormSubmit,
+  fetchData
 }, dispatch)
 
 export default connect(
