@@ -11,10 +11,18 @@ export const handleFormSubmit = (event) => {
   event.preventDefault()
   const submitedCity = event.target[0].value
   console.log(submitedCity)
+
   return dispatch => {
-    dispatch({
-      type: FORM_SUBMIT
-    })
+
+    return ((dispatch) => {
+      const url = 'http://localhost:8080/?city=' + submitedCity
+      return fetch(url)
+        .then(response => response.json())
+        .then(json => dispatch({
+          type: FORM_SUBMIT,
+          payload : json[0]
+        }))
+    })(dispatch)
   }
 }
 
@@ -36,7 +44,7 @@ export const addInputChange = (event) => {
     })
 
     return ((event, dispatch) => {
-      const url = 'http://localhost:8080/?city=' + event.target.value
+      const url = 'http://localhost:8080/?city=' + payload
       return fetch(url)
         .then(response => response.json())
         .then(json => dispatch(receiveData(json)))

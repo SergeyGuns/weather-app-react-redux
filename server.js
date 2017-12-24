@@ -1,8 +1,9 @@
-var http = require('http');
-// var static = require('node-static');
-var ALL_CITY = require('./city.list.json')
-// var fs = require('fs')
-var cityQuery = '/?city='
+const http = require('http');
+const ALL_CITY = require('./city.list.json')
+
+const cityQuery = '/?city='
+const weatherQuery = '/?weather='
+
 
 http.createServer(function (req, res) {
   if (req.url.indexOf(cityQuery) !== -1) {
@@ -11,10 +12,17 @@ http.createServer(function (req, res) {
       'Content-Type': 'application/json'
     })
     let query = decodeURI(req.url.replace(cityQuery, ''))
-    res.end(JSON.stringify(filterCityName(query, ALL_CITY), null, ''))
+    if(query)
+      res.end(JSON.stringify(filterCityName(query, ALL_CITY), null, ''));
+    else
+      res.end(JSON.stringify([]))
   }
   console.log(req.url)
 }).listen(8080);
+
+
+
+
 
 function filterCityName(query, data) {
   let response = []
@@ -24,6 +32,7 @@ function filterCityName(query, data) {
     if (Array.isArray(country.city)) {
       country.city.map(el => {
         if (regex.test(el['#text'])) {
+          el.temp = (Math.random()*60-30).toFixed(0)
           response.push(el)
         }
       })

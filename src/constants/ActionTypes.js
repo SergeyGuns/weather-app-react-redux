@@ -1,5 +1,0 @@
-export const INPUT_CHANGE = 'weather/INPUT_CHANGE'
-export const INPUT_SET = 'weather/INPUT_SET'
-export const INPUT_KEY_PRESS = 'weather/INPUT_KEY_PRESS'
-export const FORM_SUBMIT = 'weather/FORM_SUBMIT'
-export const AUTO_COMPLITE_REPLACE = 'weather/AUTO_COMPLITE_REPLACE'

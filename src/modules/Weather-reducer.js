@@ -33,7 +33,7 @@ export default (state = initState, action) => {
         return {
           ...state,
           inputValue : action.payload.name,
-          currCityId : action.payload.id
+          filteredcity: []
         }
     }
     case INPUT_KEY_PRESS: {
@@ -43,14 +43,11 @@ export default (state = initState, action) => {
         }
     }
     case FORM_SUBMIT: {
-      if (state.currCityId !== null) {
-        state.chosedcity.push(+state.currCityId)
-      }
+      let newChosedCity = state.chosedcity
+      newChosedCity.push(action.payload)
       return {
         ...state,
-        inputValue: state.currCityId !== null ? '' : state.inputValue,
-        chosedcity: state.chosedcity,
-        currCityId: null,
+        chosedcity: newChosedCity,
         filteredcity: [],
       }
     }
