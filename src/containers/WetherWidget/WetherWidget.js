@@ -2,7 +2,7 @@ import React from 'react'
 
 import * as icons from './img'
 
-const YandexWetherWidget = props => {
+const WetherWidget = props => {
   console.log(props)
   return props.chosedcity.map(
     el => Widget(el)
@@ -27,14 +27,9 @@ function Widget(cityObj) {
   return <div className='wedget'>
     <div className="wedget__city">{cityObj['#text']}</div>
     <div className="wrapper-temp-icon">
-      <img width='30' height='30' key={cityObj['-id']} src={randomIcons()} alt="" className="wedget__icon"/>
+      <img width='50' height='50' key={cityObj['-id']} src={randomIcons()} alt="" className="wedget__icon"/>
       <div className="wedget__temp">{ plusOrMinus(cityObj.temp)} C</div>
     </div>
-    {/* {Object.keys(cityObj).map(
-      key => <div key={key}>
-        {cityObj[key]}
-      </div>
-    )} */}
   </div>
 }
 
@@ -43,4 +38,4 @@ function randomIcons() {
   return icons['icon_'+index]
 }
 
-export default YandexWetherWidget
+export default WetherWidget

@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import classnames from 'classnames'
-import YandexWetherWidget from '../YandexWetherWidget'
+import WetherWidget from '../WetherWidget'
 import {
   addInputChange,
   setInputValue,
@@ -70,7 +70,7 @@ const Weather = props => {
     </form>
     <div className="chosed-list">
       {console.log(props.chosedcity)}      
-      <YandexWetherWidget chosedcity={props.chosedcity} />
+      <WetherWidget chosedcity={props.chosedcity} />
       
     </div>
   </div>
